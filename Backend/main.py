@@ -181,7 +181,7 @@ def delete_student(email: str):
 @app.post("/admin/upload-sign")
 def upload_sign(file: UploadFile = File(...)):
     try:
-        path = f"{UPLOAD_DIR}/sign.png"
+        path = os.path.join(UPLOAD_DIR, "sign.png")
         image = Image.open(file.file)
         image = image.resize((300, 150))
         image.save(path)
@@ -191,13 +191,13 @@ def upload_sign(file: UploadFile = File(...)):
 
 @app.get("/admin/sign")
 def get_sign(request: Request):
-    path = f"{UPLOAD_DIR}/sign.png"
+    path = os.path.join(UPLOAD_DIR, "sign.png")
     base = str(request.base_url)
     return success({"url": f"{base}uploads/sign.png"} if os.path.exists(path) else None)
 
 @app.delete("/admin/sign")
 def delete_sign():
-    path = f"{UPLOAD_DIR}/sign.png"
+    path = os.path.join(UPLOAD_DIR, "sign.png")
     if os.path.exists(path):
         os.remove(path)
     return success(message="Deleted")
