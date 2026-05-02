@@ -1,0 +1,18 @@
+{
+  "cli": {
+    "version": ">= 3.0.0"
+  },
+  "build": {
+    "preview": {
+      "distribution": "internal",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "production": {
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
